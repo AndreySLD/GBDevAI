@@ -7,6 +7,7 @@ public class Enemy : IEnemy
     private int _moneyPlayer;
     private int _healthPlayer;
     private int _powerPlayer;
+    private int _threatPlayer;
 
     public Enemy(string name)
     {
@@ -28,6 +29,9 @@ public class Enemy : IEnemy
             case DataType.Power:
                 _powerPlayer = dataPlayer.CountPower;
                 break;
+            case DataType.Threat:
+                _threatPlayer = dataPlayer.CountThreatLevel;
+                break;
         }
 
         Debug.Log($"Update {_name}, change {dataType}");
@@ -37,7 +41,7 @@ public class Enemy : IEnemy
     {
         get
         {
-            var power = _moneyPlayer + _healthPlayer - _powerPlayer;
+            var power = _moneyPlayer + _healthPlayer + _threatPlayer * 2 - _powerPlayer; //2 to _threadCombatMulitplier
             return power;
         }
     }
