@@ -5,6 +5,9 @@ using UnityEngine.UI;
 public class FightWindowView : MonoBehaviour
 {
     [SerializeField]
+    private RewardView _rewardView;
+    #region Text
+    [SerializeField]
     private TMP_Text _countMoneyText;
 
     [SerializeField]
@@ -18,8 +21,9 @@ public class FightWindowView : MonoBehaviour
 
     [SerializeField]
     private TMP_Text _countThreatLevelText;
+    #endregion
 
-
+    #region Buttons
     [SerializeField]
     private Button _addMoneyButton;
 
@@ -52,6 +56,10 @@ public class FightWindowView : MonoBehaviour
 
     [SerializeField]
     private Button _evadeButton;
+
+    [SerializeField]
+    private Button _buttonOpenShop;
+    #endregion
 
     private Enemy _enemy;
 
@@ -95,6 +103,8 @@ public class FightWindowView : MonoBehaviour
 
         _fightButton.onClick.AddListener(Fight);
         _evadeButton.onClick.AddListener(TryEvade);
+
+        _buttonOpenShop.onClick.AddListener(_rewardView.Show);
     }
 
     private void OnDestroy()
@@ -113,6 +123,8 @@ public class FightWindowView : MonoBehaviour
 
         _fightButton.onClick.RemoveAllListeners();
         _evadeButton.onClick.RemoveAllListeners();
+
+        _buttonOpenShop.onClick.RemoveAllListeners();
 
         _money.Detach(_enemy);
         _health.Detach(_enemy);
